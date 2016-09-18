@@ -22,15 +22,14 @@ class Bag implements Collectible {
         while (current != null && !current.word.equalsIgnoreCase(item)){
             previous = current;
             current = current.next;
-
-            if (current == null) //not found{
-                return true;
-            } else {
-                if (current == head) {
-
-                }
-            }
         }
+
+        if (current == null) {//not found
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     // Implement Collectible interface methods here
