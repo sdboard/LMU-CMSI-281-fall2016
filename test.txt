@@ -1,0 +1,4 @@
+writing some text to this test file from Terminal
+
+
+ok.
