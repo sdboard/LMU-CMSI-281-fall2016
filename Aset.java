@@ -2,13 +2,6 @@
 Quiz: Implement a Set
 Set - a list of things that does not contain dupes
 if a dupe is added, don't add it to the data structure
-
-1. Write it out/code it up
-	- java
-2. Analyze runtime of add(String s) and remove(string s)
-	- QueueSet
-	- ArraySet
-	- LinkedListSet
 */
 
 
@@ -42,14 +35,16 @@ public class Aset{
             current = current.next;
         }
 
-        if (current != null) {//not found
+        if (current != null) {
             distinct = false;
+            System.out.println("I'm not going to add this node twice, yo...")
         } 
         if (distinct) {
             Node oldfirst = first;
             first = new Node(oldfirst, item);
             size++;
         }
+
     }
 /*
 Runtime:
