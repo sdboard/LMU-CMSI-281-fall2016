@@ -15,9 +15,9 @@ public class SDBTrie{
 
 		}
 
-		public Node(char a);
+		public Node(char a){
 			c = a;
-			
 
+		}
 	}
 }

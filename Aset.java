@@ -4,9 +4,6 @@ Set - a list of things that does not contain dupes
 if a dupe is added, don't add it to the data structure
 */
 
-
-
-
 public class Aset{
 	private Node first;
 	private int size;
@@ -47,8 +44,8 @@ public class Aset{
 
     }
 /*
-Runtime:
-	O(n)
+add Runtime:
+		O(n)
 */
 
 
