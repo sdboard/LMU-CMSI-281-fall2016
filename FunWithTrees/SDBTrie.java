@@ -18,16 +18,35 @@ public class SDBTrie implements TrieInterface {
 	}
 	
 	public void addWord(String word){
+		this.size++;
 		for (int i = 0; i < word.length()-1; i++){
-			word.charAt(i)
-		}
-		if (isUnique){
-
+			char curChar = word.charAt(i);
+			if (this.pointer.doesntContain(curChar)){
+				uniqueSize++;
+				Node newChile = new Node(curChar);
+				int j = pointer.children.length;
+				Node[] newChiles = new Node[j+1];
+				for (int m = 0; m < j; m++){
+					newChiles[m] = pointer.children[m];
+				}
+				newChiles[j] = newChile;
+				pointer.children = newChiles; //rip michael jackson
+			}
+			pointer = pointer.pointsTo;
 		}
 		throw UnsupportedOperationException;
 	}
 
-	public boolean isUnique()){
+	
+
+	public boolean doesntContain(char a)){
+		for (int j = 0; j < this.children.length; j++) {
+				if (this.children[j].c == a) {
+					this.children[j].dupeNumber++;
+					return false;
+				}
+			}
+		return true;
 		throw UnsupportedOperationException;
 	}
 
@@ -59,10 +78,13 @@ public class SDBTrie implements TrieInterface {
 
 		public Node(char a){
 			c = a;
+			dupeNumber = 0;
+			children = new Node[0];
+			pointsTo = null;
 
 		}
 
-		public Node(Node n){
+		public Node(Node n){//iterator node
 			pointsTo = n;
 		}
 	}
