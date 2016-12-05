@@ -21,7 +21,7 @@ public class SDBTrie implements TrieInterface {
 		this.size++;
 		for (int i = 0; i < word.length()-1; i++){
 			char curChar = word.charAt(i);
-			if (doesntContain(curChar)){
+			if (pointer.doesntContain(curChar)){
 				uniqueSize++;
 				Node newChile = new Node(curChar);
 				int j = pointer.children.length;
@@ -39,16 +39,7 @@ public class SDBTrie implements TrieInterface {
 
 	
 
-	public boolean doesntContain(char a){
-		for (int j = 0; j < this.pointer.children.length; j++) {
-				if (this.pointer.children[j].c == a) {
-					this.pointer.children[j].dupeNumber++;
-					return false;
-				}
-			}
-		return true;
-		//throw new UnsupportedOperationException();
-	}
+	
 
 	public int size(){
 		throw new UnsupportedOperationException();
@@ -89,6 +80,17 @@ public class SDBTrie implements TrieInterface {
 		public Node(Node n){//iterator node
 			pointsTo = n;
 		}
+
+		public boolean doesntContain(char a){
+		for (int j = 0; j < this.children.length; j++) {
+				if (this.children[j].c == a) {
+					this.children[j].dupeNumber++;
+					return false;
+				}
+			}
+		return true;
+		//throw new UnsupportedOperationException();
+	}
 	}
 
 	public static void main(String[] args) throws IOException {
