@@ -37,7 +37,25 @@ public class SDBTrie implements TrieInterface {
 		throw new UnsupportedOperationException();
 	}
 
-	
+	// public void adder(String word){
+	// 	this.size++;
+	// 	for (int i = 0; i < word.length()-1; i++){
+	// 		int curChar = word.charAt(i);
+	// 		if (pointer.doesntContain(curChar)){
+	// 			uniqueSize++;
+	// 			Node newChile = new Node(curChar);
+	// 			int j = pointer.children.length;
+	// 			Node[] newChiles = new Node[j+1];
+	// 			for (int m = 0; m < j; m++){
+	// 				newChiles[m] = pointer.children[m];
+	// 			}
+	// 			newChiles[j] = newChile;
+	// 			pointer.children = newChiles; //rip michael jackson
+	// 		}
+	// 		pointer = pointer.pointsTo;
+	// 	}
+	// 	throw new UnsupportedOperationException();
+	// }
 
 	
 
@@ -56,9 +74,15 @@ public class SDBTrie implements TrieInterface {
 		//throw new UnsupportedOperationException();
 	}
 
+	public static void test(char c){
+		int a = c;
+		System.out.println(a);
+	}
+
 	class Node {
 		char c;
 		int dupeNumber;
+		int[] charAr;
 		Node[] children;
 		Node pointsTo;
 		boolean endOfWord;
@@ -69,6 +93,7 @@ public class SDBTrie implements TrieInterface {
 			children = new Node[0];
 			pointsTo = null;
 			endOfWord = false;
+			charAr = new int[127];
 
 		}
 
@@ -77,6 +102,8 @@ public class SDBTrie implements TrieInterface {
 			dupeNumber = 0;
 			children = new Node[0];
 			pointsTo = null;
+			endOfWord = false;
+			charAr = new int[127];
 
 		}
 
@@ -88,12 +115,14 @@ public class SDBTrie implements TrieInterface {
 			for (int j = 0; j < this.children.length; j++) {
 					if (this.children[j].c == a) {
 						this.children[j].dupeNumber++;
+						//this = children[j];
 						return false;
 					}
 				}
 			return true;
 		//throw new UnsupportedOperationException();
 		}	
+
 		public int dupeNumber(){
 			return dupeNumber;
 		//throw new UnsupportedOperationException();
@@ -102,6 +131,22 @@ public class SDBTrie implements TrieInterface {
 	}
 
 	public static void main(String[] args) throws IOException {
+		char c1 = 'a';
+		char c2 = ')';
+		char c3 = 'A';
+		char c4 = '.';
+		char c5 = '3';
+		char c6 = '\n';
+		char c7 = ' ';
+		char c8 = '\0';
+		test(c1);
+		test(c2);
+		test(c3);
+		test(c4);
+		test(c5);
+		test(c6);
+		test(c7);
+		test(c8);
         SDBTrie tree = new SDBTrie();
         Scanner s = null;
         try {
