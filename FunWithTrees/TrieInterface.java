@@ -7,7 +7,7 @@ public interface TrieInterface{
 	public int size();
 	// number of words added to the Trie
 
-	public int UniqueSize();
+	public int uniqueSize();
 	// number of unique words
 
 	public int getDupeNumber();

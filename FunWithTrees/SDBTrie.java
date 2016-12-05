@@ -21,7 +21,7 @@ public class SDBTrie implements TrieInterface {
 		this.size++;
 		for (int i = 0; i < word.length()-1; i++){
 			char curChar = word.charAt(i);
-			if (this.pointer.doesntContain(curChar)){
+			if (doesntContain(curChar)){
 				uniqueSize++;
 				Node newChile = new Node(curChar);
 				int j = pointer.children.length;
@@ -34,32 +34,32 @@ public class SDBTrie implements TrieInterface {
 			}
 			pointer = pointer.pointsTo;
 		}
-		throw UnsupportedOperationException;
+		throw new UnsupportedOperationException();
 	}
 
 	
 
-	public boolean doesntContain(char a)){
-		for (int j = 0; j < this.children.length; j++) {
-				if (this.children[j].c == a) {
-					this.children[j].dupeNumber++;
+	public boolean doesntContain(char a){
+		for (int j = 0; j < this.pointer.children.length; j++) {
+				if (this.pointer.children[j].c == a) {
+					this.pointer.children[j].dupeNumber++;
 					return false;
 				}
 			}
 		return true;
-		throw UnsupportedOperationException;
+		//throw new UnsupportedOperationException();
 	}
 
 	public int size(){
-		throw UnsupportedOperationException;
+		throw new UnsupportedOperationException();
 	}
 
-	public int UniqueSize(){
-		throw UnsupportedOperationException;
+	public int uniqueSize(){
+		throw new UnsupportedOperationException();
 	}
 
 	public int getDupeNumber(){
-		throw UnsupportedOperationException;
+		throw new UnsupportedOperationException();
 	}
 
 	class Node {
@@ -67,12 +67,14 @@ public class SDBTrie implements TrieInterface {
 		int dupeNumber;
 		Node[] children;
 		Node pointsTo;
+		boolean endOfWord;
 
 		public Node(){
-			c = '';
+			c = ' ';
 			dupeNumber = 0;
 			children = new Node[0];
 			pointsTo = null;
+			endOfWord = false;
 
 		}
 
@@ -96,7 +98,7 @@ public class SDBTrie implements TrieInterface {
             s = new Scanner(System.in);
             while (s.hasNext()) {
                 String item = s.next(); // Scanner splits input on whitespace, by default
-                tree.add(item);
+                tree.addWord(item);
             }
         } finally {
             if (s != null) {
