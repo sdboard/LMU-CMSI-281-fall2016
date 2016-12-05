@@ -42,15 +42,18 @@ public class SDBTrie implements TrieInterface {
 	
 
 	public int size(){
-		throw new UnsupportedOperationException();
+		return size;
+		//throw new UnsupportedOperationException();
 	}
 
 	public int uniqueSize(){
-		throw new UnsupportedOperationException();
+		return uniqueSize;
+		//throw new UnsupportedOperationException();
 	}
 
 	public int getDupeNumber(){
-		throw new UnsupportedOperationException();
+		return pointer.dupeNumber();
+		//throw new UnsupportedOperationException();
 	}
 
 	class Node {
@@ -82,15 +85,20 @@ public class SDBTrie implements TrieInterface {
 		}
 
 		public boolean doesntContain(char a){
-		for (int j = 0; j < this.children.length; j++) {
-				if (this.children[j].c == a) {
-					this.children[j].dupeNumber++;
-					return false;
+			for (int j = 0; j < this.children.length; j++) {
+					if (this.children[j].c == a) {
+						this.children[j].dupeNumber++;
+						return false;
+					}
 				}
-			}
-		return true;
+			return true;
 		//throw new UnsupportedOperationException();
-	}
+		}	
+		public int dupeNumber(){
+			return dupeNumber;
+		//throw new UnsupportedOperationException();
+		}
+	
 	}
 
 	public static void main(String[] args) throws IOException {
