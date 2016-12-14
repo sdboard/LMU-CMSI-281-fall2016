@@ -17,6 +17,83 @@ public class SDBTrie implements TrieInterface {
 		int uniqueSize = 0;
 	}
 	
+	public void addTheWord(String word){
+		this.size++;
+		Node traverser = this.root;
+		for (int i = 0; i < word.length(); i++){
+			char curChar = word.charAt(i);
+			if (traverser.children.doesntContain(curChar)) {
+				int n = curChar.getI();
+				traverser.children[n] = new Node(curChar);
+				traverser = traverser.children.match(curChar);
+				if (i = word.length() - 1){
+					traverser.wordCount++;
+					uniqueSize++;
+				}
+			} else {
+				traverser = traverser.children.match(curChar);
+				if (i = word.length() - 1){
+					traverser.wordCount++;
+				}
+			}
+		}
+	}
+
+	public Node match(char theChar){
+		int i = 0;
+		Node current = this[i];
+		while (current.c != theChar){
+			i++;
+			current = this[i];
+		}
+		return current;
+	}
+
+	public boolean doesntContain(char theChar){
+		int i = 0;
+		Node current = this[i];
+		while(i < 26){
+			if(current != null){
+				if (current.c == theChar){
+					return false;
+				}
+			}
+			i++;
+		}
+		return true;
+	}
+
+	public int getI(char curChar){
+		switch (curChar){
+		case 'a': return 0;
+		case 'b': return 1;
+		case 'c': return 2;
+		case 'd': return 3;
+		case 'e': return 4;
+		case 'f': return 5;
+		case 'g': return 6;
+		case 'h': return 7;
+		case 'i': return 8;
+		case 'j': return 9;
+		case 'k': return 10;
+		case 'l': return 11;
+		case 'm': return 12;
+		case 'n': return 13;
+		case 'o': return 14;
+		case 'p': return 15;
+		case 'q': return 16;
+		case 'r': return 17;
+		case 's': return 18;
+		case 't': return 19;
+		case 'u': return 20;
+		case 'v': return 21;
+		case 'w': return 22;
+		case 'x': return 23;
+		case 'y': return 24;
+		case 'z': return 25;
+		default: return -1;}
+	}
+	/*
 	public void addWord(String word){
 		this.size++;
 		for (int i = 0; i < word.length()-1; i++){
@@ -32,32 +109,38 @@ public class SDBTrie implements TrieInterface {
 				newChiles[j] = newChile;
 				pointer.children = newChiles; //rip michael jackson
 			}
-			pointer = pointer.pointsTo;
+			pointer = pointer.specialPointer;
 		}
 		throw new UnsupportedOperationException();
 	}
 
-	// public void adder(String word){
-	// 	this.size++;
-	// 	for (int i = 0; i < word.length()-1; i++){
-	// 		int curChar = word.charAt(i);
-	// 		if (pointer.doesntContain(curChar)){
-	// 			uniqueSize++;
-	// 			Node newChile = new Node(curChar);
-	// 			int j = pointer.children.length;
-	// 			Node[] newChiles = new Node[j+1];
-	// 			for (int m = 0; m < j; m++){
-	// 				newChiles[m] = pointer.children[m];
-	// 			}
-	// 			newChiles[j] = newChile;
-	// 			pointer.children = newChiles; //rip michael jackson
-	// 		}
-	// 		pointer = pointer.pointsTo;
-	// 	}
-	// 	throw new UnsupportedOperationException();
-	// }
+	public void adder(String word){
+		this.size++;
+		for (int i = 0; i < word.length()-1; i++){
+			int curChar = (int) word.charAt(i);
+			int letterNumber;
+			
+			// if ((curChar > 64 && curChar < 91) || (curChar > 96 && curChar < 123)){
+			// 	int charNumber;
 
-	
+			// } 
+			if (pointer.doesntContain(curChar)){
+				uniqueSize++;
+				Node newChile = new Node(curChar);
+				int j = pointer.children.length;
+				Node[] newChiles = new Node[j+1];
+				for (int m = 0; m < j; m++){
+					newChiles[m] = pointer.children[m];
+				}
+				newChiles[j] = newChile;
+				pointer.children = newChiles; //rip michael jackson
+			}
+			pointer = pointer.specialPointer;
+		}
+		throw new UnsupportedOperationException();
+	}
+
+	*/
 
 	public int size(){
 		return size;
@@ -73,44 +156,45 @@ public class SDBTrie implements TrieInterface {
 		return pointer.dupeNumber();
 		//throw new UnsupportedOperationException();
 	}
-
+	/*
 	public static void test(char c){
 		int a = c;
 		System.out.println(a);
 	}
-
+	*/
 	class Node {
 		char c;
-		int dupeNumber;
-		int[] charAr;
 		Node[] children;
-		Node pointsTo;
-		boolean endOfWord;
+		Node specialPointer;
+		int wordCount;
 
 		public Node(){
 			c = ' ';
-			dupeNumber = 0;
-			children = new Node[0];
-			pointsTo = null;
-			endOfWord = false;
-			charAr = new int[127];
-
+			children = new Node[26];
+			specialPointer = null;
+			wordCount = 0;
 		}
 
 		public Node(char a){
 			c = a;
-			dupeNumber = 0;
-			children = new Node[0];
-			pointsTo = null;
-			endOfWord = false;
-			charAr = new int[127];
+			children = new Node[26];
+			specialPointer = null;
+			wordCount = 0;
+			
+		}
 
+		public Node(int i){
+			c = a;
+			children = new Node[26];
+			specialPointer = null;
+			wordCount = 0;
+			
 		}
 
 		public Node(Node n){//iterator node
-			pointsTo = n;
+			specialPointer = n;
 		}
-
+		/*
 		public boolean doesntContain(char a){
 			for (int j = 0; j < this.children.length; j++) {
 					if (this.children[j].c == a) {
@@ -121,39 +205,25 @@ public class SDBTrie implements TrieInterface {
 				}
 			return true;
 		//throw new UnsupportedOperationException();
-		}	
+		}
+
 
 		public int dupeNumber(){
 			return dupeNumber;
 		//throw new UnsupportedOperationException();
 		}
-	
+		*/
 	}
 
 	public static void main(String[] args) throws IOException {
-		char c1 = 'a';
-		char c2 = ')';
-		char c3 = 'A';
-		char c4 = '.';
-		char c5 = '3';
-		char c6 = '\n';
-		char c7 = ' ';
-		char c8 = '\0';
-		test(c1);
-		test(c2);
-		test(c3);
-		test(c4);
-		test(c5);
-		test(c6);
-		test(c7);
-		test(c8);
+		
         SDBTrie tree = new SDBTrie();
         Scanner s = null;
         try {
             s = new Scanner(System.in);
             while (s.hasNext()) {
                 String item = s.next(); // Scanner splits input on whitespace, by default
-                tree.addWord(item);
+                tree.addTheWord(item);
             }
         } finally {
             if (s != null) {
