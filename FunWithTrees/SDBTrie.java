@@ -18,50 +18,40 @@ public class SDBTrie implements TrieInterface {
 	}
 	
 	public void addTheWord(String word){
+		String cWord = clean(word);
 		this.size++;
 		Node traverser = this.root;
-		for (int i = 0; i < word.length(); i++){
-			char curChar = word.charAt(i);
-			if (traverser.children.doesntContain(curChar)) {
-				int n = curChar.getI();
+		for (int i = 0; i < cWord.length(); i++){
+			char curChar = Character.toLowerCase(cWord.charAt(i));
+			if (traverser.doesntContain(curChar)) { //error here
+				int n = ((int) curChar - 30);						// and here
 				traverser.children[n] = new Node(curChar);
-				traverser = traverser.children.match(curChar);
-				if (i = word.length() - 1){
+				traverser = traverser.match(curChar);//cant find match(char) error
+				if (i == cWord.length() - 1){
 					traverser.wordCount++;
 					uniqueSize++;
 				}
 			} else {
-				traverser = traverser.children.match(curChar);
-				if (i = word.length() - 1){
+				traverser = traverser.match(curChar); 
+				if (i == cWord.length() - 1){
 					traverser.wordCount++;
 				}
 			}
 		}
 	}
 
-	public Node match(char theChar){
-		int i = 0;
-		Node current = this[i];
-		while (current.c != theChar){
-			i++;
-			current = this[i];
+	public String clean(String word){
+		String cW = "";
+		for(int i = 0; i < word.length(); i++) {
+			int n = (int) word.charAt(i);
+			if( (n > 64 && n < 91) || (n > 96 && n < 123) ) {
+				cW += word.charAt(i);
+			}
 		}
-		return current;
+		return cW;
 	}
 
-	public boolean doesntContain(char theChar){
-		int i = 0;
-		Node current = this[i];
-		while(i < 26){
-			if(current != null){
-				if (current.c == theChar){
-					return false;
-				}
-			}
-			i++;
-		}
-		return true;
-	}
+
 
 	public int getI(char curChar){
 		switch (curChar){
@@ -93,7 +83,7 @@ public class SDBTrie implements TrieInterface {
 		case 'z': return 25;
 		default: return -1;}
 	}
-	/*
+	/**
 	public void addWord(String word){
 		this.size++;
 		for (int i = 0; i < word.length()-1; i++){
@@ -152,11 +142,12 @@ public class SDBTrie implements TrieInterface {
 		//throw new UnsupportedOperationException();
 	}
 
+	/**
 	public int getDupeNumber(){
 		return pointer.dupeNumber();
 		//throw new UnsupportedOperationException();
 	}
-	/*
+	
 	public static void test(char c){
 		int a = c;
 		System.out.println(a);
@@ -180,9 +171,35 @@ public class SDBTrie implements TrieInterface {
 			children = new Node[26];
 			specialPointer = null;
 			wordCount = 0;
-			
 		}
 
+		public boolean doesntContain(char theChar){
+			int i = 0;
+			Node current;
+			while(i < 26){
+				current = this.children[i];
+				if(current != null){
+					if (current.c == theChar){
+						return false;
+					}
+				}
+				i++;
+			}
+			return true;
+		}
+
+		public Node match(char theChar){
+			for(int i = 0; i < 26; i++){
+				if(this.children[i] != null){
+					if (this.children[i].c == theChar){
+						return this.children[i];
+					}
+				}
+			}
+			return null;
+		}
+
+/**
 		public Node(int i){
 			c = a;
 			children = new Node[26];
@@ -190,11 +207,43 @@ public class SDBTrie implements TrieInterface {
 			wordCount = 0;
 			
 		}
+*/
+		public int getC(int i){
+			switch (i){
+			case 'a': return 0;
+			case 'b': return 1;
+			case 'c': return 2;
+			case 'd': return 3;
+			case 'e': return 4;
+			case 'f': return 5;
+			case 'g': return 6;
+			case 'h': return 7;
+			case 'i': return 8;
+			case 'j': return 9;
+			case 'k': return 10;
+			case 'l': return 11;
+			case 'm': return 12;
+			case 'n': return 13;
+			case 'o': return 14;
+			case 'p': return 15;
+			case 'q': return 16;
+			case 'r': return 17;
+			case 's': return 18;
+			case 't': return 19;
+			case 'u': return 20;
+			case 'v': return 21;
+			case 'w': return 22;
+			case 'x': return 23;
+			case 'y': return 24;
+			case 'z': return 25;
+			default: return -1;
+			}
+		}
 
 		public Node(Node n){//iterator node
 			specialPointer = n;
 		}
-		/*
+		/**
 		public boolean doesntContain(char a){
 			for (int j = 0; j < this.children.length; j++) {
 					if (this.children[j].c == a) {
@@ -216,8 +265,7 @@ public class SDBTrie implements TrieInterface {
 	}
 
 	public static void main(String[] args) throws IOException {
-		
-        SDBTrie tree = new SDBTrie();
+		SDBTrie tree = new SDBTrie();
         Scanner s = null;
         try {
             s = new Scanner(System.in);
