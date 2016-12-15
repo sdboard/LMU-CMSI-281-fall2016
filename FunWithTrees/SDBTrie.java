@@ -24,7 +24,7 @@ public class SDBTrie implements TrieInterface {
 		for (int i = 0; i < cWord.length(); i++){
 			char curChar = Character.toLowerCase(cWord.charAt(i));
 			if (traverser.doesntContain(curChar)) { //error here
-				int n = ((int) curChar - 30);						// and here
+				int n = getI(curChar);						// and here
 				traverser.children[n] = new Node(curChar);
 				traverser = traverser.match(curChar);//cant find match(char) error
 				if (i == cWord.length() - 1){
