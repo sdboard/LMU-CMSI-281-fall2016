@@ -11,6 +11,7 @@ public class SDBTrie implements TrieInterface {
 
 
 	public SDBTrie(){
+		System.out.println("Makin a Trie");
 		root = new Node();
 		pointer = new Node(root);
 		int size = 0;
@@ -23,10 +24,10 @@ public class SDBTrie implements TrieInterface {
 		Node traverser = this.root;
 		for (int i = 0; i < cWord.length(); i++){
 			char curChar = Character.toLowerCase(cWord.charAt(i));
-			if (traverser.doesntContain(curChar)) { //error here
-				int n = getI(curChar);						// and here
+			if (traverser.doesntContain(curChar)) { 
+				int n = getI(curChar);					
 				traverser.children[n] = new Node(curChar);
-				traverser = traverser.match(curChar);//cant find match(char) error
+				traverser = traverser.match(curChar);
 				if (i == cWord.length() - 1){
 					traverser.wordCount++;
 					uniqueSize++;
@@ -50,7 +51,6 @@ public class SDBTrie implements TrieInterface {
 		}
 		return cW;
 	}
-
 
 
 	public int getI(char curChar){
@@ -83,54 +83,7 @@ public class SDBTrie implements TrieInterface {
 		case 'z': return 25;
 		default: return -1;}
 	}
-	/**
-	public void addWord(String word){
-		this.size++;
-		for (int i = 0; i < word.length()-1; i++){
-			char curChar = word.charAt(i);
-			if (pointer.doesntContain(curChar)){
-				uniqueSize++;
-				Node newChile = new Node(curChar);
-				int j = pointer.children.length;
-				Node[] newChiles = new Node[j+1];
-				for (int m = 0; m < j; m++){
-					newChiles[m] = pointer.children[m];
-				}
-				newChiles[j] = newChile;
-				pointer.children = newChiles; //rip michael jackson
-			}
-			pointer = pointer.specialPointer;
-		}
-		throw new UnsupportedOperationException();
-	}
 
-	public void adder(String word){
-		this.size++;
-		for (int i = 0; i < word.length()-1; i++){
-			int curChar = (int) word.charAt(i);
-			int letterNumber;
-			
-			// if ((curChar > 64 && curChar < 91) || (curChar > 96 && curChar < 123)){
-			// 	int charNumber;
-
-			// } 
-			if (pointer.doesntContain(curChar)){
-				uniqueSize++;
-				Node newChile = new Node(curChar);
-				int j = pointer.children.length;
-				Node[] newChiles = new Node[j+1];
-				for (int m = 0; m < j; m++){
-					newChiles[m] = pointer.children[m];
-				}
-				newChiles[j] = newChile;
-				pointer.children = newChiles; //rip michael jackson
-			}
-			pointer = pointer.specialPointer;
-		}
-		throw new UnsupportedOperationException();
-	}
-
-	*/
 
 	public int size(){
 		return size;
@@ -142,17 +95,7 @@ public class SDBTrie implements TrieInterface {
 		//throw new UnsupportedOperationException();
 	}
 
-	/**
-	public int getDupeNumber(){
-		return pointer.dupeNumber();
-		//throw new UnsupportedOperationException();
-	}
-	
-	public static void test(char c){
-		int a = c;
-		System.out.println(a);
-	}
-	*/
+
 	class Node {
 		char c;
 		Node[] children;
@@ -160,6 +103,7 @@ public class SDBTrie implements TrieInterface {
 		int wordCount;
 
 		public Node(){
+			System.out.println("Makin a Node");
 			c = ' ';
 			children = new Node[26];
 			specialPointer = null;
@@ -199,15 +143,7 @@ public class SDBTrie implements TrieInterface {
 			return null;
 		}
 
-/**
-		public Node(int i){
-			c = a;
-			children = new Node[26];
-			specialPointer = null;
-			wordCount = 0;
-			
-		}
-*/
+
 		public int getC(int i){
 			switch (i){
 			case 'a': return 0;
@@ -241,44 +177,33 @@ public class SDBTrie implements TrieInterface {
 		}
 
 		public Node(Node n){//iterator node
+			System.out.println("Makin a pointer Node");
 			specialPointer = n;
 		}
-		/**
-		public boolean doesntContain(char a){
-			for (int j = 0; j < this.children.length; j++) {
-					if (this.children[j].c == a) {
-						this.children[j].dupeNumber++;
-						//this = children[j];
-						return false;
-					}
-				}
-			return true;
-		//throw new UnsupportedOperationException();
-		}
 
-
-		public int dupeNumber(){
-			return dupeNumber;
-		//throw new UnsupportedOperationException();
-		}
-		*/
 	}
 
 	public static void main(String[] args) throws IOException {
+		//cd Desktop/Computer_stuff/cmsi281/FunWithTrees/
+		System.out.println(String.format("And So It Begins"));
 		SDBTrie tree = new SDBTrie();
+		System.out.println("new scannder");
         Scanner s = null;
         try {
+        	System.out.println("System in it");
             s = new Scanner(System.in);
             while (s.hasNext()) {
+            	System.out.println("A word __ at ya");
                 String item = s.next(); // Scanner splits input on whitespace, by default
                 tree.addTheWord(item);
-            }
+        	}
         } finally {
             if (s != null) {
                 s.close();
             }
         }
 
+        System.out.println("n__a we pm made it");
         // Print bag size and distinct contents
         System.out.format("Total number of words: %d\n", tree.size());
         System.out.format("Unique number of words: %d\n", tree.uniqueSize());
