@@ -5,5 +5,5 @@ public interface TrieInterface{
     
     public int size();
     
-    public static void toString(Node root)
+    public static void toString(Node root);
 }
