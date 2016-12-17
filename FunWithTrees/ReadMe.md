@@ -1,8 +1,9 @@
-ReadMe.md\n
-This is my FunWithTrees program, SDBTrie, where I implement a prefix tree \n
-Instructions to user:
-save a text document, (example: t.txt), containing only letters and numbers to x directory
-save SDBTrie.java and TrieInterface.java to x directory
-go to x directory in terminal
-type 'javac SDBTrie.java' and press enter
-type 'java SDBTrie << t.txt' and press enter
+#ReadMe.md 
+#This is my FunWithTrees program, TrieHard (Because I'm shamelessly a 'try-hard'), where I implement a prefix tree. 
+#Instructions to user: 
+#1) Save a text document like the above Hamlet.txt into your directory. 
+#2) Save TrieHard.java and TrieInterface.java to this directory. 
+#3) Go to x directory in terminal. 
+#4) Type 'javac TrieHard.java' and press enter. 
+#5) Type 'java TrieHard << Hamlet.txt' and press enter. 
+#6) Be amazed.
