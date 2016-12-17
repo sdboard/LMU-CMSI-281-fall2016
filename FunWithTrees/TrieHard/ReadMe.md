@@ -5,5 +5,5 @@
 #2) Save TrieHard.java and TrieInterface.java to this directory. 
 #3) Go to x directory in terminal. 
 #4) Type 'javac TrieHard.java' and press enter. 
-#5) Type 'java TrieHard << Hamlet.txt' and press enter. 
+#5) Type 'java TrieHard < Hamlet.txt' and press enter. 
 #6) Be amazed.
