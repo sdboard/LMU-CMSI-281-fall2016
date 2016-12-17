@@ -73,20 +73,71 @@ public class TrieHard implements TrieInterface {
         return size;
     }
 
-    public int uniqueSize(){
-        return uniqueSize;
-    }
-
     public static void toString(Node root){
         triePrinter(root);
-        for(int i = 0; i < strings.length; i++){
+        sort(strings);
+        int i = strings.length-1;
+        int f = 0;
+        while (f < 10){
+            if (strings[i].word.equals(" the")){
+                i--;
+            }else if (strings[i].word.equals(" and")){
+                i--;
+            }else if (strings[i].word.equals(" to")){
+                i--;
+            }else if (strings[i].word.equals(" of")){
+                i--;
+            }else if (strings[i].word.equals(" i")){
+                i--;
+            }else if (strings[i].word.equals(" you")){
+                i--;
+            }else if (strings[i].word.equals(" a")){
+                i--;
+            }else if (strings[i].word.equals(" in")){
+                i--;
+            }else if (strings[i].word.equals(" it")){
+                i--;
+            }else {
             System.out.println( strings[i].t+" \t |"+strings[i].word);
-       }
+            i--;
+            f++;
+            }
+        }
    }
+
+   public static void sort(Box[] objects){
+        quickSort(objects, 0, (objects.length-1));
+   }
+   public static void quickSort(Box[] objects, int low, int high){
+        if (low < high){
+            int p = partition(objects, low, high);
+            quickSort(objects, low, p-1);
+            quickSort(objects, p+1, high);
+        }
+   }
+   public static int partition(Box[] array, int low, int high){
+        int pivot = array[high].t;
+        int i = low;
+        int j = low;
+        Box temp;
+        while (j < high) {
+            if (array[j].t <= pivot) {
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                i++;
+            }
+            j++;
+        }
+        temp = array[high];
+        array[high] = array[i];
+        array[i] = temp;
+        return i;
+   }
+
 
     public static void triePrinter(Node root){
         wordbuilder[root.layer] = root.c;
-        greenCarpet(root);
         if(root.wordCount != 0){
             //manually trim the array!!
             if((int) wordbuilder[root.layer+1] != 0){
@@ -96,7 +147,7 @@ public class TrieHard implements TrieInterface {
                     y++;
                 }
             }
-            box2Add(root.wordCount);
+            add2Box(root.wordCount);
         }
         
         for (int i = 0; i < root.children.length; i++){
@@ -109,16 +160,7 @@ public class TrieHard implements TrieInterface {
         return;
     }
 
-    public static void greenCarpet(Node n){
-        char[] temp = new char[chars.length+1];
-        for(int i = 0; i < chars.length; i++){
-            temp[i] = chars[i];
-        }
-        temp[chars.length] = n.c;
-        chars = temp;
-    }
-
-    public static void box2Add(int count){
+    public static void add2Box(int count){
         Box object = new Box();
         String wort = "";
         int m = 0;
