@@ -78,7 +78,7 @@ public class TrieHard implements TrieInterface {
         sort(strings);
         int i = strings.length-1;
         int f = 0;
-        while (f < 10){
+        while (f < 20){
             if (strings[i].word.equals(" the")){
                 i--;
             }else if (strings[i].word.equals(" and")){
@@ -96,6 +96,54 @@ public class TrieHard implements TrieInterface {
             }else if (strings[i].word.equals(" in")){
                 i--;
             }else if (strings[i].word.equals(" it")){
+                i--;
+            }else if (strings[i].word.equals(" for")){
+                i--;
+            }else if (strings[i].word.equals(" is")){
+                i--;
+            }else if (strings[i].word.equals(" are")){
+                i--;
+            }else if (strings[i].word.equals(" that")){
+                i--;
+            }else if (strings[i].word.equals(" from")){
+                i--;
+            }else if (strings[i].word.equals(" their")){
+                i--;
+            }else if (strings[i].word.equals(" these")){
+                i--;
+            }else if (strings[i].word.equals(" this")){
+                i--;
+            }else if (strings[i].word.equals(" with")){
+                i--;
+            }else if (strings[i].word.equals(" not")){
+                i--;
+            }else if (strings[i].word.equals(" if")){
+                i--;
+            }else if (strings[i].word.equals(" should")){
+                i--;
+            }else if (strings[i].word.equals(" as")){
+                i--;
+            }else if (strings[i].word.equals(" do")){
+                i--;
+            }else if (strings[i].word.equals(" about")){
+                i--;
+            }else if (strings[i].word.equals(" say")){
+                i--;
+            }else if (strings[i].word.equals(" but")){
+                i--;
+            }else if (strings[i].word.equals(" they")){
+                i--;
+            }else if (strings[i].word.equals(" has")){
+                i--;
+            }else if (strings[i].word.equals(" be")){
+                i--;
+            }else if (strings[i].word.equals(" on")){
+                i--;
+            }else if (strings[i].word.equals(" or")){
+                i--;
+            }else if (strings[i].word.equals(" by")){
+                i--;
+            }else if (strings[i].word.equals(" there")){
                 i--;
             }else {
             System.out.println( strings[i].t+" \t |"+strings[i].word);
