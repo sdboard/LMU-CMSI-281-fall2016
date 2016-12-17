@@ -2,8 +2,12 @@
 public interface TrieInterface{
     //list of methods that my trie will implement
     public void add(String word);
-    
+    //adds a word to the prefix tree
+
     public int size();
-    
-    public static void toString(Node root);
+    // number of words added to the Trie
+
+
+
+
 }
